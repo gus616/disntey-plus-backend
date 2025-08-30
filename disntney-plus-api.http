@@ -1,0 +1,6 @@
+@disntney_plus_api_HostAddress = http://localhost:5218
+
+GET {{disntney_plus_api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
