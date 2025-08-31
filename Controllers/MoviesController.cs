@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using disntney_plus_api.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace disntney_plus_api.Controllers
 {
@@ -6,16 +7,23 @@ namespace disntney_plus_api.Controllers
     [Route("api/[controller]")]
     public class MoviesController : Controller
     {
-        [HttpGet]
-        public IActionResult GetMovies()
+        private readonly IMovieService _moviesService;
+        public MoviesController(IMovieService moviesService)
         {
-            var movies = new[]
-            {
-                new { Id = 1, Title= "The Lion King",Year=1994},
-                new { Id = 2, Title="Frozen", Year=2013 },
-                new { Id = 3, Title="Avengers Endgame", Year = 2019 }
-            };
+            _moviesService = moviesService;
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetMovies()
+        {
+           var movies = await _moviesService.GetAllMoviesAsync();
             return Ok(movies);
+        }
+
+        [HttpGet("{id}")]
+        public async Task <IActionResult> GetMovieById(int id)
+        {
+            var movie = await _moviesService.GetMovieByIdAsync(id);
+            return Ok(movie);
         }
     }
 }
