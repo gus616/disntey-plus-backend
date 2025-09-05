@@ -10,5 +10,9 @@ namespace disntney_plus_api.Data
         public DbSet<Movie> Movies { get; set; }
 
         public DbSet<MovieImage> MoviesImages { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<CategoryGallery> CategoriesGallery { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using disntney_plus_api.Data;
 
@@ -11,9 +12,11 @@ using disntney_plus_api.Data;
 namespace disntney_plus_api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250905184243_Category")]
+    partial class Category
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,52 +24,6 @@ namespace disntney_plus_api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("disntney_plus_api.Models.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("CategoryGalleryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryGalleryId");
-
-                    b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("disntney_plus_api.Models.CategoryGallery", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CategoryId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("VideoUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CategoriesGallery");
-                });
 
             modelBuilder.Entity("disntney_plus_api.Models.Movie", b =>
                 {
@@ -115,15 +72,6 @@ namespace disntney_plus_api.Migrations
                     b.HasIndex("MovieId");
 
                     b.ToTable("MoviesImages");
-                });
-
-            modelBuilder.Entity("disntney_plus_api.Models.Category", b =>
-                {
-                    b.HasOne("disntney_plus_api.Models.CategoryGallery", "CategoryGallery")
-                        .WithMany()
-                        .HasForeignKey("CategoryGalleryId");
-
-                    b.Navigation("CategoryGallery");
                 });
 
             modelBuilder.Entity("disntney_plus_api.Models.MovieImage", b =>
