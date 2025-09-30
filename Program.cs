@@ -29,11 +29,11 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: "react-app-client", builder =>
     {
-        builder.WithOrigins("http://localhost:5173", "https://nice-ocean-0db720610.1.azurestaticapps.net")
+        builder.WithOrigins("http://localhost:5173", "https://nice-ocean-0db720610.1.azurestaticapps.net", "https://kind-mushroom-01200b30f.2.azurestaticapps.net")
         .AllowAnyHeader()
         .AllowAnyMethod()
         .AllowCredentials();
-    });
+    });    
 });
 
 var app = builder.Build();
