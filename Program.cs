@@ -16,6 +16,8 @@ builder.Services.AddScoped<ICommonService<Category>, CategoriesService>();
 
 builder.Services.AddScoped<IMovieRepository, MovieRepository>();
 builder.Services.AddScoped<IMovieService, MovieService>();
+builder.Services.AddScoped<RecommendationService>();
+builder.Services.AddScoped<RecommendationRepository>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
  options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

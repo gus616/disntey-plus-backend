@@ -14,5 +14,7 @@ namespace disntney_plus_api.Data
         public DbSet<Category> Categories { get; set; }
 
         public DbSet<CategoryGallery> CategoriesGallery { get; set; }
+
+        public DbSet<Recommendation> Recommendations { get; set; }
     }
 }

@@ -13,6 +13,7 @@ namespace disntney_plus_api.MappingProfile
             CreateMap<Category, CategoryDto>()
                 .ForMember(dest => dest.Gallery, opt => opt.MapFrom(src => src.CategoryGallery));
             CreateMap<CategoryGallery, CategoryGalleryDto>();
+            CreateMap<Recommendation, RecommendationDto>();
         }
     }
 }
